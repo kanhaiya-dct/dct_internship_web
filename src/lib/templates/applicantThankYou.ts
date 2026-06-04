@@ -138,8 +138,11 @@ export function getApplicantThankYouTemplate(name: string, program: string, orig
 <body>
   <div class="wrapper">
     <div class="container">
-      <div class="header">
-        <img src="${origin}/images/image.png" alt="DCT Logo" width="80" height="80" style="display: block; border: 0;" />
+      <div class="header" style="display: flex; align-items: center; gap: 12px;">
+        <img src="${origin}/images/image.png" alt="DCT Logo" width="40" height="40" style="display: block; border: 0; outline: none; text-decoration: none;" />
+        <span style="font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 22px; font-weight: bold; letter-spacing: -0.05em; color: #0f172a;">
+          DCT<span style="color: #10b981;">.</span>TECH
+        </span>
       </div>
       <div class="content">
         <h2 class="greeting">Hi ${name},</h2>

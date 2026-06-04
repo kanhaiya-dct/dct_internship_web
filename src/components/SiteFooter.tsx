@@ -10,10 +10,10 @@ export function SiteFooter() {
           </p>
           <div className="flex flex-wrap gap-4">
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/918569862853"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 bg-whatsapp text-white px-5 py-3 rounded-lg font-bold hover:brightness-110 transition"
+              className="inline-flex items-center gap-2 bg-whatsapp text-black px-5 py-3 rounded-lg font-bold hover:brightness-110 transition"
             >
               Chat on WhatsApp
             </a>

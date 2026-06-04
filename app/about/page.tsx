@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { aboutFeatures } from "../../src/data/aboutFeatures";
 
 export const metadata: Metadata = {
   title: "About — DCT Technology",
@@ -37,27 +38,10 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-16 grid md:grid-cols-2 gap-6">
-          {[
-            [
-              "Mentorship-first",
-              "Every intern gets daily reviews and 1-on-1 guidance from working engineers.",
-            ],
-            [
-              "Real workflows",
-              "Git, PRs, standups, design reviews — the things textbooks don't show you.",
-            ],
-            [
-              "Honest about outcomes",
-              "We promise skill and exposure. We don't promise fake placements.",
-            ],
-            [
-              "Student-first culture",
-              "We measure ourselves by how confident you feel when you leave.",
-            ],
-          ].map(([t, b]) => (
-            <div key={t} className="p-6 rounded-2xl border border-border bg-surface">
-              <h3 className="font-bold mb-2">{t}</h3>
-              <p className="text-sm text-muted-foreground">{b}</p>
+          {aboutFeatures.map((feat) => (
+            <div key={feat.title} className="p-6 rounded-2xl border border-border bg-surface">
+              <h3 className="font-bold mb-2">{feat.title}</h3>
+              <p className="text-sm text-muted-foreground">{feat.body}</p>
             </div>
           ))}
         </div>

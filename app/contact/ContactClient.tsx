@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { programs } from "../../src/data/programs";
 
 export function ContactClient() {
   const [submitted, setSubmitted] = useState(false);
@@ -19,7 +20,7 @@ export function ContactClient() {
 
           <div className="space-y-4">
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/918569862853"
               target="_blank"
               rel="noreferrer"
               className="flex items-center justify-between p-5 rounded-xl border border-border bg-surface hover:border-primary/50 transition"
@@ -33,14 +34,14 @@ export function ContactClient() {
               <span className="text-primary">→</span>
             </a>
             <a
-              href="mailto:hello@dctinfotech.com"
+              href="mailto:hr@dctinfotech.com"
               className="flex items-center justify-between p-5 rounded-xl border border-border bg-surface hover:border-primary/50 transition"
             >
               <div>
                 <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-1">
                   Email
                 </p>
-                <p className="font-bold">hello@dctinfotech.com</p>
+                <p className="font-bold">hr@dctinfotech.com</p>
               </div>
               <span className="text-primary">→</span>
             </a>
@@ -79,6 +80,7 @@ export function ContactClient() {
                 <Field label="Full name" name="name" placeholder="Your name" />
                 <Field label="Email" name="email" type="email" placeholder="you@example.com" />
               </div>
+              <Field label="Phone Number" name="number" type="tel" placeholder="8569862853" />
               <Field label="College / Institution" name="college" placeholder="Optional" />
               <div className="space-y-2">
                 <label className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
@@ -88,12 +90,11 @@ export function ContactClient() {
                   required
                   className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm focus:border-primary outline-none transition"
                 >
-                  <option>Frontend Development</option>
-                  <option>UI/UX Product Design</option>
-                  <option>Full Stack Engineering</option>
-                  <option>Backend Development</option>
-                  <option>React Specialist</option>
-                  <option>Graphic Design</option>
+                  {programs.map((p) => (
+                    <option key={p.slug} value={p.slug}>
+                      {p.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="space-y-2">

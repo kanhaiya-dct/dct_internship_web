@@ -6,6 +6,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../src/components/ui/accordion";
+import { workflow } from "../src/data/workflow";
+import { mentors } from "../src/data/mentors";
+import { faqs } from "../src/data/faqs";
+import { featuredPrograms as programs } from "../src/data/programs";
 
 export const metadata: Metadata = {
   title: "DCT Technology — Real IT Internships, Not Just Courses",
@@ -17,134 +21,6 @@ export const metadata: Metadata = {
       "Theory plus real client projects. Daily mentorship. Grow until you're industry-ready.",
   },
 };
-
-const workflow = [
-  {
-    step: "01",
-    title: "Solid Base",
-    body: "Deep dive into core CS and language fundamentals.",
-    highlight: false,
-  },
-  {
-    step: "02",
-    title: "Guided Tasks",
-    body: "Small wins with mentor-supervised exercises.",
-    highlight: false,
-  },
-  {
-    step: "03",
-    title: "Internal Dev",
-    body: "Building tools used by our own company teams.",
-    highlight: false,
-  },
-  {
-    step: "04",
-    title: "Client Work",
-    body: "Solving real problems for real industry clients.",
-    highlight: false,
-  },
-  {
-    step: "05",
-    title: "Ship & Lead",
-    body: "Launch your portfolio and mentor the next batch.",
-    highlight: true,
-  },
-];
-
-const mentors = [
-  {
-    initials: "AY",
-    name: "Amit Yadav",
-    role: "Backend Developer",
-    teaches: ["Node.js", "APIs", "MongoDB", "Authentication", "Backend Architecture"],
-    tools: ["Node.js", "Express", "MongoDB", "GitHub", "Postman"],
-    desc: "Focuses on practical backend workflows, API integration, and helping students understand real development environments.",
-  },
-  {
-    initials: "UX",
-    name: "UI/UX Mentor",
-    role: "Product & UI/UX Designer",
-    teaches: ["Figma", "UX Research", "Design Systems", "Responsive Design", "Product Thinking"],
-    tools: ["Figma", "Framer", "Adobe XD", "Notion"],
-    desc: "Helps students understand how modern digital products are designed through practical UI/UX workflows and real project execution.",
-  },
-  {
-    initials: "FE",
-    name: "Frontend Mentor",
-    role: "Frontend Developer",
-    teaches: [
-      "React.js",
-      "Next.js",
-      "Tailwind CSS",
-      "Responsive Development",
-      "Component Architecture",
-    ],
-    tools: ["React", "Next.js", "Tailwind", "GitHub", "Firebase"],
-    desc: "Guides students in building responsive modern interfaces with practical frontend development practices.",
-  },
-];
-
-const faqs = [
-  {
-    q: "Will I work on real projects?",
-    a: "Yes. Students work on practical tasks and project-based workflows designed to help them gain implementation skills, confidence, and real industry exposure.",
-  },
-  {
-    q: "Do you only teach theory?",
-    a: "No. Our learning approach combines theory, practical implementation, mentor guidance, and project-based execution to help students understand concepts through real application.",
-  },
-  {
-    q: "Is this beginner friendly?",
-    a: "Yes. We guide students step-by-step with focused mentorship and practical learning support designed for different skill levels.",
-  },
-  {
-    q: "How does online learning work?",
-    a: "Our online sessions focus on quality practical learning instead of long theory-heavy lectures. Students receive guided mentorship and implementation support through live Zoom or Google Meet sessions.",
-  },
-  {
-    q: "Can internship duration be extended?",
-    a: "Yes. Students who want to continue improving and gaining more practical exposure can extend their internship duration based on learning progress and project involvement.",
-  },
-  {
-    q: "Will I build portfolio projects?",
-    a: "Yes. Students work on practical projects that help strengthen portfolios, improve confidence, and provide real workflow experience.",
-  },
-  {
-    q: "What makes DCT Technology different from other institutes?",
-    a: "Many institutes focus mainly on theory or long lecture-based learning. At DCT Technology, we focus on practical implementation, mentorship, real workflows, and helping students build confidence through project experience.",
-  },
-  {
-    q: "Do you provide mentorship during projects?",
-    a: "Yes. Students receive mentor guidance, reviews, feedback, and practical support throughout their learning and project journey.",
-  },
-];
-
-const programs = [
-  {
-    slug: "frontend",
-    name: "Frontend Development",
-    stack: ["React", "TypeScript", "Tailwind"],
-    blurb: "Build production interfaces with modern tooling and real design systems.",
-  },
-  {
-    slug: "uiux",
-    name: "UI/UX Product Design",
-    stack: ["Figma", "Tokens", "Research"],
-    blurb: "Design real products end-to-end — from research to a shipped interface.",
-  },
-  {
-    slug: "fullstack",
-    name: "Full Stack Engineering",
-    stack: ["Node.js", "PostgreSQL", "React"],
-    blurb: "Own a feature from database to UI inside a real codebase.",
-  },
-  {
-    slug: "backend",
-    name: "Backend Development",
-    stack: ["Node.js", "APIs", "DB Design"],
-    blurb: "Design APIs, model data, and ship reliable services.",
-  },
-];
 
 function Index() {
   return (
@@ -220,6 +96,12 @@ function Index() {
                 Start Internship →
               </Link>
               <Link
+                href="/contact"
+                className="border border-border bg-white/5 px-6 py-4 rounded-xl font-bold text-center hover:bg-white/10 transition"
+              >
+                Get Advice
+              </Link>
+               <Link
                 href="/projects"
                 className="border border-border bg-white/5 px-6 py-4 rounded-xl font-bold text-center hover:bg-white/10 transition"
               >

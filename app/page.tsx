@@ -95,12 +95,6 @@ function Index() {
               >
                 Start Internship →
               </Link>
-              <Link
-                href="/contact"
-                className="border border-border bg-white/5 px-6 py-4 rounded-xl font-bold text-center hover:bg-white/10 transition"
-              >
-                Get Advice
-              </Link>
                <Link
                 href="/projects"
                 className="border border-border bg-white/5 px-6 py-4 rounded-xl font-bold text-center hover:bg-white/10 transition"

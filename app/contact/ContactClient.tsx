@@ -1,9 +1,72 @@
 "use client";
 import { useState } from "react";
 import { programs } from "../../src/data/programs";
+import { toast } from "sonner";
 
 export function ContactClient() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formElement = e.currentTarget;
+
+    try {
+      const formData = new FormData(formElement);
+      const name = formData.get("name")?.toString().trim();
+      const email = formData.get("email")?.toString().trim();
+      const number = formData.get("number")?.toString().trim();
+      const college = formData.get("college")?.toString().trim();
+      const program = formData.get("program")?.toString().trim();
+      const message = formData.get("message")?.toString().trim();
+
+      // Client-side validation
+      if (!name) {
+        toast.error("Please enter your full name.");
+        setIsSubmitting(false);
+        return;
+      }
+      if (!email) {
+        toast.error("Please enter your email address.");
+        setIsSubmitting(false);
+        return;
+      }
+      if (!number) {
+        toast.error("Please enter your phone number.");
+        setIsSubmitting(false);
+        return;
+      }
+      if (!program) {
+        toast.error("Please select a program of interest.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, number, college, program, message }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to submit application");
+      }
+
+      toast.success("Application submitted successfully!");
+      formElement.reset();
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error(err);
+      toast.error(err?.message || "Something went wrong while sending your application.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="px-6 py-24">
@@ -58,10 +121,7 @@ export function ContactClient() {
         </div>
 
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSubmitted(true);
-          }}
+          onSubmit={handleSubmit}
           className="p-8 rounded-3xl border border-border bg-surface space-y-5"
         >
           {submitted ? (
@@ -77,18 +137,43 @@ export function ContactClient() {
           ) : (
             <>
               <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Full name" name="name" placeholder="Your name" />
-                <Field label="Email" name="email" type="email" placeholder="you@example.com" />
+                <Field
+                  label="Full name"
+                  name="name"
+                  placeholder="Your name"
+                  disabled={isSubmitting}
+                />
+                <Field
+                  label="Email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  disabled={isSubmitting}
+                />
               </div>
-              <Field label="Phone Number" name="number" type="tel" placeholder="8569862853" />
-              <Field label="College / Institution" name="college" placeholder="Optional" />
+              <Field
+                label="Phone Number"
+                name="number"
+                type="tel"
+                placeholder="8569862853"
+                disabled={isSubmitting}
+              />
+              <Field
+                label="College / Institution"
+                name="college"
+                placeholder="Optional"
+                required={false}
+                disabled={isSubmitting}
+              />
               <div className="space-y-2">
                 <label className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
                   Program of interest
                 </label>
                 <select
                   required
-                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm focus:border-primary outline-none transition"
+                  name="program"
+                  disabled={isSubmitting}
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm focus:border-primary outline-none transition disabled:opacity-50"
                 >
                   {programs.map((p) => (
                     <option key={p.slug} value={p.slug}>
@@ -103,15 +188,18 @@ export function ContactClient() {
                 </label>
                 <textarea
                   rows={4}
-                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm focus:border-primary outline-none transition resize-none"
+                  name="message"
+                  disabled={isSubmitting}
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm focus:border-primary outline-none transition resize-none disabled:opacity-50"
                   placeholder="Tell us about your current skill level and goals."
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-bold text-base hover:brightness-110 transition shadow-lg shadow-primary/20"
+                disabled={isSubmitting}
+                className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-bold text-base hover:brightness-110 transition shadow-lg shadow-primary/20 disabled:opacity-50"
               >
-                Submit application
+                {isSubmitting ? "Submitting..." : "Submit application"}
               </button>
               <p className="text-[10px] text-center text-muted-foreground">
                 No placement guarantees. No shortcuts. Only real skill, real mentorship, real
@@ -130,11 +218,15 @@ function Field({
   name,
   type = "text",
   placeholder,
+  required = true,
+  disabled = false,
 }: {
   label: string;
   name: string;
   type?: string;
   placeholder?: string;
+  required?: boolean;
+  disabled?: boolean;
 }) {
   return (
     <div className="space-y-2">
@@ -149,8 +241,9 @@ function Field({
         name={name}
         type={type}
         placeholder={placeholder}
-        required
-        className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm focus:border-primary outline-none transition"
+        required={required}
+        disabled={disabled}
+        className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm focus:border-primary outline-none transition disabled:opacity-50"
       />
     </div>
   );

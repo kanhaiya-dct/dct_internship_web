@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const nav = [
   { to: "/programs", label: "Programs" },
@@ -18,9 +19,19 @@ export function SiteHeader() {
       <div className="max-w-7xl mx-auto px-6 h-16 grid grid-cols-[1fr_auto_1fr] items-center">
         <Link
           href="/"
-          className="font-mono font-bold tracking-tighter text-lg text-foreground justify-self-start"
+          className="flex items-center gap-2 font-mono font-bold tracking-tighter text-lg text-foreground justify-self-start"
+          style={{ textDecoration: "none" }}
         >
-          DCT<span className="text-primary">.</span>TECH
+          <Image
+            src="/images/image.png"
+            alt="DCT Logo"
+            width={60}
+            height={60}
+            className="object-contain h-11 w-auto"
+          />
+          <span className="flex items-center">
+            DCT<span className="text-[#10b981]">.</span>TECH
+          </span>
         </Link>
         <div className="hidden md:flex gap-6 text-sm font-medium text-muted-foreground justify-self-center">
           {nav.map((n) => (

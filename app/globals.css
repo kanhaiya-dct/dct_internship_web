@@ -108,3 +108,8 @@
     background: color-mix(in oklab, var(--primary) 30%, transparent);
   }
 }
+
+
+button, a {
+  cursor: pointer;
+}

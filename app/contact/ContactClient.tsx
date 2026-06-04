@@ -10,7 +10,7 @@ export function ContactClient() {
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
         <div>
           <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">
-            Apply / ContactClient
+            Apply Here
           </p>
           <h1 className="text-5xl font-extrabold tracking-tight mb-6">Talk to a real human.</h1>
           <p className="text-lg text-muted-foreground mb-10">

@@ -41,9 +41,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <div className="flex min-h-screen flex-col bg-background text-foreground">
+        <div className="relative flex min-h-screen flex-col bg-background text-foreground">
+          <div aria-hidden className="bg-noise" />
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main className="relative flex-1">{children}</main>
           <SiteFooter />
         </div>
         <Toaster position="top-right" richColors />

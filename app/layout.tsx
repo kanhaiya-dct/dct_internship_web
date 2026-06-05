@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import NextTopLoader from "nextjs-toploader";
 import { SiteHeader } from "../src/components/SiteHeader";
 import { SiteFooter } from "../src/components/SiteFooter";
 import { Toaster } from "sonner";
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <NextTopLoader color="#10b981" showSpinner={false} />
         <div className="relative flex min-h-screen flex-col bg-background text-foreground">
           <div aria-hidden className="bg-noise" />
           <SiteHeader />
